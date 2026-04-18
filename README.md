@@ -4,7 +4,7 @@
 
 A proof of concept where typography adapts in real time based on the reader's context. Same article, different readers, different typographic experiences.
 
-**Try the live demo: [dvelton.github.io/context-type](https://dvelton.github.io/context-type/)**
+**Try the live demo (works in Chrome): [dvelton.github.io/context-type](https://dvelton.github.io/context-type/)**
 
 ## What it does
 
