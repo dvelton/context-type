@@ -1,0 +1,50 @@
+/*
+  Adaptive typography layer.
+  All font adaptation flows through CSS custom properties set per-paragraph by the renderer.
+  CSS transitions handle smooth interpolation — JS just updates the targets.
+*/
+
+.article-body p {
+  --casl: 0;
+  --wght: 400;
+  --slnt: 0;
+  --mono: 0;
+  --lh: 1.65;
+  --ls: 0em;
+  --opacity: 1;
+
+  font-variation-settings:
+    'CASL' var(--casl),
+    'wght' var(--wght),
+    'slnt' var(--slnt),
+    'MONO' var(--mono);
+
+  line-height: var(--lh);
+  letter-spacing: var(--ls);
+  opacity: var(--opacity);
+
+  transition:
+    font-variation-settings 0.35s ease-out,
+    line-height 0.5s ease-out,
+    letter-spacing 0.5s ease-out,
+    opacity 0.4s ease-out;
+}
+
+/* When compare mode is held, snap to static baseline instantly */
+.article-body.compare-active p {
+  --casl: 0 !important;
+  --wght: 400 !important;
+  --slnt: 0 !important;
+  --mono: 0 !important;
+  --lh: 1.65 !important;
+  --ls: 0em !important;
+  --opacity: 1 !important;
+  transition: font-variation-settings 0.12s ease-out;
+}
+
+/* Reduced motion: disable transitions, keep adaptation values */
+@media (prefers-reduced-motion: reduce) {
+  .article-body p {
+    transition: none;
+  }
+}

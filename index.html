@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context Type</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,MONO@-15..0,300..1000,0..1,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/adaptive.css">
+</head>
+<body>
+  <!-- Onboarding overlay -->
+  <div id="onboarding" class="onboarding">
+    <div class="onboarding-card">
+      <h1>Context Type</h1>
+      <p class="onboarding-subtitle">The text reads you back.</p>
+      <p class="onboarding-body">
+        This article tracks where your eyes focus using your camera,
+        then adapts its typography in real time. Weight, slant, spacing,
+        and opacity shift sentence by sentence as you read.
+      </p>
+      <button id="begin-reading" class="onboarding-btn">Begin Reading</button>
+      <p class="onboarding-fine">Your camera is used for eye tracking only. All processing happens in your browser.</p>
+    </div>
+  </div>
+
+  <!-- Main article -->
+  <main id="article-container" class="article-container hidden">
+    <article id="article">
+      <header class="article-header">
+        <h1 class="article-title">What Happens When You Read This Sentence</h1>
+      </header>
+      <div id="article-body" class="article-body">
+        <!-- Paragraphs injected by article.js -->
+      </div>
+    </article>
+
+    <!-- Controls bar -->
+    <div id="controls" class="controls">
+      <div class="controls-left">
+        <button id="toggle-dashboard" class="ctrl-btn" title="Toggle signal dashboard">
+          <span class="ctrl-icon">◉</span> Signals
+        </button>
+      </div>
+
+      <div class="controls-right">
+        <span id="gaze-status" class="gaze-status"></span>
+        <button id="show-fingerprint" class="ctrl-btn" title="View your reading fingerprint">
+          <span class="ctrl-icon">▤</span> Fingerprint
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Dashboard panel -->
+  <aside id="dashboard" class="dashboard hidden">
+    <div class="dashboard-header">
+      <h2>Context Signals</h2>
+      <button id="close-dashboard" class="dashboard-close">&times;</button>
+    </div>
+    <div class="dashboard-section">
+      <h3>Reader</h3>
+      <div id="signals-reader" class="signal-list"></div>
+    </div>
+    <div class="dashboard-section">
+      <h3>Content</h3>
+      <div id="signals-content" class="signal-list"></div>
+    </div>
+    <div class="dashboard-divider"></div>
+    <div class="dashboard-section">
+      <h3>Font Axes</h3>
+      <div id="axis-values" class="axis-list"></div>
+    </div>
+  </aside>
+
+  <!-- Fingerprint overlay -->
+  <div id="fingerprint-overlay" class="fingerprint-overlay hidden">
+    <div class="fingerprint-card">
+      <div class="fingerprint-header">
+        <h2>Your Reading Fingerprint</h2>
+        <button id="close-fingerprint" class="dashboard-close">&times;</button>
+      </div>
+      <p class="fingerprint-desc">
+        A visual signature of how the typography adapted as you read.
+        Each row is a font axis. Color intensity shows the value at each
+        point in your reading journey. No two readers produce the same pattern.
+      </p>
+      <canvas id="fingerprint-canvas" width="800" height="200"></canvas>
+      <div class="fingerprint-legend" id="fingerprint-legend"></div>
+      <button id="save-fingerprint" class="onboarding-btn fingerprint-save">Save as PNG</button>
+    </div>
+  </div>
+
+  <!-- Calibration overlay -->
+  <div id="calibration" class="calibration hidden">
+    <p class="calibration-instruction">Look at each dot and click it to calibrate eye tracking</p>
+    <div class="calibration-dot" data-point="0" style="top: 10%; left: 10%"></div>
+    <div class="calibration-dot" data-point="1" style="top: 10%; left: 50%"></div>
+    <div class="calibration-dot" data-point="2" style="top: 10%; left: 90%"></div>
+    <div class="calibration-dot" data-point="3" style="top: 50%; left: 10%"></div>
+    <div class="calibration-dot" data-point="4" style="top: 50%; left: 50%"></div>
+    <div class="calibration-dot" data-point="5" style="top: 50%; left: 90%"></div>
+    <div class="calibration-dot" data-point="6" style="top: 85%; left: 10%"></div>
+    <div class="calibration-dot" data-point="7" style="top: 85%; left: 50%"></div>
+    <div class="calibration-dot" data-point="8" style="top: 85%; left: 90%"></div>
+  </div>
+
+  <!-- Focus lens — radial spotlight following attention -->
+  <div id="focus-lens" class="focus-lens"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/webgazer@3.5.3/dist/webgazer.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
